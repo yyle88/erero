@@ -46,6 +46,19 @@ func Errorf(format string, args ...interface{}) error {
 }
 
 // Is 就是判定错误是否和另一个错误相等的，把这个函数也写过来，能避免引用 errors 包避免包名冲突还要使用别名
-func Is(err, target error) bool {
-	return errors.Is(err, target)
+func Is(erx, target error) bool {
+	return errors.Is(erx, target)
+}
+
+func Ise(erx, target error) bool {
+	if errors.Is(erx, target) {
+		if erx != nil {
+			zaplog.LOGS.P1.Debug("DEBUG", zap.Error(erx))
+		}
+		return true
+	}
+	if erx != nil {
+		zaplog.LOGS.P1.Error("ERROR", zap.Error(erx))
+	}
+	return false
 }
