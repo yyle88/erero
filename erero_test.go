@@ -30,3 +30,9 @@ func TestIse(t *testing.T) {
 		require.False(t, Ise(errors.New("wrong"), errors.New("wrong")))
 	}
 }
+
+func TestWro(t *testing.T) {
+	erx := errors.New("abc")
+	require.Error(t, WithMessage(erx, "wrong"))
+	require.Error(t, Wro(erx)) //和前一行等效，能稍微省点代码
+}
