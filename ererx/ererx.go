@@ -78,6 +78,23 @@ func (x *Ererx) Ise(erx, target error) bool {
 	return false
 }
 
+func (x *Ererx) As(erx error, target any) bool {
+	return errors.As(erx, target)
+}
+
+func (x *Ererx) Ase(erx error, target any) bool {
+	if errors.As(erx, target) {
+		if erx != nil { //当命中错误的时候就只打印 DEBUG 日志
+			x.xlog.dlog("DEBUG", zap.Error(erx), zap.Any("target", target))
+		}
+		return true
+	}
+	if erx != nil { //而当不命中的时候就打印 ERROR 日志
+		x.xlog.elog("ERROR", zap.Error(erx))
+	}
+	return false
+}
+
 // Wro 在很多时候虽然有错误，但是懒得写 WithMessage 的时候就可以直接用这个函数，避免代码里都是 WithMessage(err, "wrong") 稍微简化代码
 func (x *Ererx) Wro(err error) error {
 	erx := errors.WithMessage(err, "wrong")

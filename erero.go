@@ -38,6 +38,14 @@ func Ise(erx, target error) bool {
 	return ere3x.Ise(erx, target)
 }
 
+func As(erx error, target any) bool {
+	return ere3x.As(erx, target)
+}
+
+func Ase(erx error, target any) bool {
+	return ere3x.Ase(erx, target)
+}
+
 // Wro 在很多时候虽然有错误，但是懒得写 WithMessage 的时候就可以直接用这个函数，避免代码里都是 WithMessage(err, "wrong") 稍微简化代码
 func Wro(err error) error {
 	return ere3x.Wro(err)
