@@ -1,6 +1,7 @@
 package ererx
 
 import (
+	"net/http"
 	"testing"
 
 	"github.com/pkg/errors"
@@ -48,4 +49,41 @@ func TestWro(t *testing.T) {
 	erx := errors.New("abc")
 	require.Error(t, ere2x.WithMessage(erx, "wrong"))
 	require.Error(t, ere2x.Wro(erx)) //和前一行等效，能稍微省点代码
+}
+
+func TestErerx_ErxBiz(t *testing.T) {
+	erx := errors.New("abc")
+	require.Error(t, ere2x.WithMessage(erx, "wrong"))
+	{
+		wbe := ere2x.WroWebRequest(erx)
+		t.Log(wbe)
+		require.Error(t, wbe) //和前一行等效，能稍微省点代码
+	}
+	{
+		ehc := ere2x.WroHttpStatus(http.StatusBadRequest, erx)
+		t.Log(ehc)
+		require.Error(t, ehc) //和前一行等效，能稍微省点代码
+	}
+	{
+		dbe := ere2x.WroDatabase(erx)
+		t.Log(dbe)
+		require.Error(t, dbe) //和前一行等效，能稍微省点代码
+	}
+	{
+		rbe := ere2x.WroRedis(erx)
+		t.Log(rbe)
+		require.Error(t, rbe) //和前一行等效，能稍微省点代码
+	}
+
+	{
+		rbe := ere2x.WroCommonBiz("wa", erx)
+		t.Log(rbe)
+		require.Error(t, rbe) //和前一行等效，能稍微省点代码
+	}
+
+	{
+		rbe := ere2x.WroNotExist(erx)
+		t.Log(rbe)
+		require.Error(t, rbe) //和前一行等效，能稍微省点代码
+	}
 }
