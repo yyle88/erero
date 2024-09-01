@@ -7,14 +7,14 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestErerx_Ero(t *testing.T) {
+func TestErrors_Ero(t *testing.T) {
 	require.Error(t, ED.Ero(errors.New("abc")))
 	require.Error(t, WD.Ero(errors.New("abc")))
 	require.Error(t, DD.Ero(errors.New("abc")))
 	require.Error(t, EN.Ero(errors.New("abc")))
 }
 
-func TestErerx_Ise(t *testing.T) {
+func TestErrors_Ise(t *testing.T) {
 	a := errors.New("abc")
 	b := errors.New("abc")
 

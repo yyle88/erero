@@ -29,8 +29,8 @@ func TestNew(t *testing.T) {
 	require.Error(t, ere2x.New("wrong"))
 }
 
-func TestWithMessage(t *testing.T) {
-	require.Error(t, ere2x.WithMessage(ere2x.New("wrong"), "msg"))
+func TestWms(t *testing.T) {
+	require.Error(t, ere2x.Wms(ere2x.New("wrong"), "msg"))
 }
 
 func TestIse(t *testing.T) {

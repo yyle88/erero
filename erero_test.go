@@ -15,8 +15,8 @@ func TestNew(t *testing.T) {
 	require.Error(t, New("wrong"))
 }
 
-func TestWithMessage(t *testing.T) {
-	require.Error(t, WithMessage(New("wrong"), "msg"))
+func TestWme(t *testing.T) {
+	require.Error(t, Wme(New("wrong"), "msg"))
 }
 
 func TestIse(t *testing.T) {
@@ -29,6 +29,10 @@ func TestIse(t *testing.T) {
 		//当错误不匹配，就打印错误日志
 		require.False(t, Ise(errors.New("wrong"), errors.New("wrong")))
 	}
+}
+
+func TestErf(t *testing.T) {
+	require.Error(t, Erf("abc=%s", "abc"))
 }
 
 func TestWro(t *testing.T) {

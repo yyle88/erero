@@ -44,6 +44,22 @@ func (x *Ererx) WithMessage(err error, message string) error {
 	return erx
 }
 
+func (x *Ererx) Wms(err error, message string) error {
+	erx := errors.WithMessage(err, message)
+	if erx != nil {
+		x.xlog.elog("ERROR", zap.Error(erx))
+	}
+	return erx
+}
+
+func (x *Ererx) Wme(err error, message string) error {
+	erx := errors.WithMessage(err, message)
+	if erx != nil {
+		x.xlog.elog("ERROR", zap.Error(erx))
+	}
+	return erx
+}
+
 func (x *Ererx) WithMessagef(err error, format string, args ...interface{}) error {
 	erx := errors.WithMessagef(err, format, args...)
 	if erx != nil {
@@ -52,7 +68,23 @@ func (x *Ererx) WithMessagef(err error, format string, args ...interface{}) erro
 	return erx
 }
 
+func (x *Ererx) Wmf(err error, format string, args ...interface{}) error {
+	erx := errors.WithMessagef(err, format, args...)
+	if erx != nil {
+		x.xlog.elog("ERROR", zap.Error(erx))
+	}
+	return erx
+}
+
 func (x *Ererx) Errorf(format string, args ...interface{}) error {
+	erx := errors.Errorf(format, args...)
+	if erx != nil {
+		x.xlog.elog("ERROR", zap.Error(erx))
+	}
+	return erx
+}
+
+func (x *Ererx) Erf(format string, args ...interface{}) error {
 	erx := errors.Errorf(format, args...)
 	if erx != nil {
 		x.xlog.elog("ERROR", zap.Error(erx))
