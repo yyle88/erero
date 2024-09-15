@@ -40,3 +40,7 @@ func TestWro(t *testing.T) {
 	require.Error(t, WithMessage(erx, "wrong"))
 	require.Error(t, Wro(erx)) //和前一行等效，能稍微省点代码
 }
+
+func TestPan(t *testing.T) {
+	Pan(nil)
+}

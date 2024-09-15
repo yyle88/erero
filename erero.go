@@ -63,6 +63,11 @@ func Ase(erx error, target any) bool {
 }
 
 // Wro 在很多时候虽然有错误，但是懒得写 WithMessage 的时候就可以直接用这个函数，避免代码里都是 WithMessage(err, "wrong") 稍微简化代码
-func Wro(err error) error {
-	return e3z.Wro(err)
+func Wro(erx error) error {
+	return e3z.Wro(erx)
+}
+
+// Pan 就是当有错时 panic，相当于断言，这样也能避免在外面再判断有没有出错，择机使用吧，有些正式项目里还是不能随便panic的
+func Pan(erx error) {
+	e3z.Pan(erx)
 }

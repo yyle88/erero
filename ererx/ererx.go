@@ -185,3 +185,10 @@ func (x *Ererx) WroCommonBiz(reason string, erx error) error {
 	}
 	return cme
 }
+
+func (x *Ererx) Pan(erx error) {
+	if erx != nil {
+		x.xlog.elog("ERROR", zap.Error(erx))
+		panic(erx)
+	}
+}
