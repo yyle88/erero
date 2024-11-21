@@ -4,38 +4,38 @@ import (
 	"github.com/yyle88/erero/ererx"
 )
 
-var ere3x = ererx.NewErerx(ererx.NewZapED(3))
+var eee = ererx.NewErero(ererx.NewZapED(3))
 
 func As[T any](erx error) (*T, bool) {
 	var target *T
-	return target, ere3x.As(erx, &target)
+	return target, eee.As(erx, &target)
 }
 
 func Ase[T any](erx error) (*T, bool) {
 	var target *T
-	return target, ere3x.Ase(erx, &target)
+	return target, eee.Ase(erx, &target)
 }
 
 func WroWebRequest(erx error) error {
-	return ere3x.WroWebRequest(erx)
+	return eee.WroWebRequest(erx)
 }
 
 func WroHttpStatus(code int, erx error) error {
-	return ere3x.WroHttpStatus(code, erx)
+	return eee.WroHttpStatus(code, erx)
 }
 
 func WroNotExist(erx error) error {
-	return ere3x.WroNotExist(erx)
+	return eee.WroNotExist(erx)
 }
 
 func WroDatabase(erx error) error {
-	return ere3x.WroDatabase(erx)
+	return eee.WroDatabase(erx)
 }
 
 func WroRedis(erx error) error {
-	return ere3x.WroRedis(erx)
+	return eee.WroRedis(erx)
 }
 
 func WroCommonBiz(reason string, erx error) error {
-	return ere3x.WroCommonBiz(reason, erx)
+	return eee.WroCommonBiz(reason, erx)
 }
