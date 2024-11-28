@@ -15,32 +15,17 @@ func TestNew(t *testing.T) {
 	require.Error(t, New("wrong"))
 }
 
-func TestWme(t *testing.T) {
-	require.Error(t, Wme(New("wrong"), "msg"))
-}
-
 func TestIse(t *testing.T) {
-	{
-		var erx = errors.New("wrong")
-		//当错误匹配时，就打印调试日志
-		require.True(t, Ise(erx, erx))
-	}
-	{
-		//当错误不匹配，就打印错误日志
-		require.False(t, Ise(errors.New("wrong"), errors.New("wrong")))
-	}
-}
+	var erx = errors.New("wrong")
 
-func TestErf(t *testing.T) {
-	require.Error(t, Erf("abc=%s", "abc"))
+	//当错误匹配时，就打印调试日志
+	require.True(t, Ise(erx, erx))
+	//当错误不匹配，就打印错误日志
+	require.False(t, Ise(erx, errors.New("wrong")))
 }
 
 func TestWro(t *testing.T) {
 	erx := errors.New("abc")
 	require.Error(t, WithMessage(erx, "wrong"))
 	require.Error(t, Wro(erx)) //和前一行等效，能稍微省点代码
-}
-
-func TestPan(t *testing.T) {
-	Pan(nil)
 }

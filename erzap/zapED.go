@@ -1,4 +1,4 @@
-package ererx
+package erzap
 
 import (
 	"github.com/yyle88/zaplog"
@@ -13,10 +13,10 @@ func NewZapED(skip int) *ZapED {
 	return &ZapED{skip: skip}
 }
 
-func (z *ZapED) elog(msg string, fields ...zap.Field) {
+func (z *ZapED) ErrorLog(msg string, fields ...zap.Field) {
 	zaplog.LOGS.Pn(z.skip).Error(msg, fields...)
 }
 
-func (z *ZapED) dlog(msg string, fields ...zap.Field) {
+func (z *ZapED) DebugLog(msg string, fields ...zap.Field) {
 	zaplog.LOGS.Pn(z.skip).Debug(msg, fields...)
 }
