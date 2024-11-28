@@ -1,33 +1,82 @@
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/yyle88/erero/release.yml?branch=main&label=BUILD)](https://github.com/yyle88/erero/actions/workflows/release.yml?query=branch%3Amain)
+[![GoDoc](https://pkg.go.dev/badge/github.com/yyle88/erero)](https://pkg.go.dev/github.com/yyle88/erero)
+[![Coverage Status](https://img.shields.io/coveralls/github/yyle88/erero/master.svg)](https://coveralls.io/github/yyle88/erero?branch=main)
+![Supported Go Versions](https://img.shields.io/badge/Go-1.22%2C%201.23-lightgrey.svg)
+[![GitHub Release](https://img.shields.io/github/release/yyle88/erero.svg)](https://github.com/yyle88/erero/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/yyle88/erero)](https://goreportcard.com/report/github.com/yyle88/erero)
+
 # erero
-简单的errors包，读音和菠萝菠萝蜜的音节节奏相同，erero，就是个简单的错误包，当发生错误是记录错误的位置，同时打印日志，通过日志显示错误位置。
 
-erero 的包名不和标准 errors 或者 github.com/pkg/errors 的有冲突，也不和 "github.com/go-kratos/kratos/v2/errors" 有冲突。
+**erero** is a simple error-handling package designed to log errors along with their context and location.
 
-# 背景
-经常会遇到这种的代码：
+package name **erero** doesn't conflict with Go's standard `errors` package or other popular libraries like `github.com/pkg/errors` or `github.com/go-kratos/kratos/v2/errors`.
+
+## CHINESE README
+
+[中文说明](README.zh.md)
+
+## Installation
+
+```bash
+go get github.com/yyle88/erero
 ```
-if err != nil {
-    log.Error(err)
-    return err
+
+## Example Usage
+
+```go
+package main
+
+import (
+	"fmt"
+	"math/rand/v2"
+
+	"github.com/yyle88/erero"
+)
+
+func sub1() error {
+	if rand.IntN(100) < 30 {
+		return erero.New("wrong")
+	}
+	return nil
+}
+
+func sub2() error {
+	if num := rand.IntN(100); num < 20 {
+		return erero.Errorf("wrong num=%d", num)
+	}
+	return nil
+}
+
+func run() error {
+	if err := sub1(); err != nil {
+		return erero.WithMessage(err, "sub1 is wrong")
+	}
+	if err := sub2(); err != nil {
+		return erero.WithMessagef(err, "sub2 is wrong")
+	}
+	return nil
+}
+
+func main() {
+	if err := run(); err != nil {
+		panic(erero.Wro(err))
+	}
+	fmt.Println("success")
 }
 ```
 
-或者会遇到这样的代码：
-```
-if err != nil {
-    log.Error(errors.WithMessage(err, "wrong"))
-    return errors.WithMessage(err, "wrong")
-}
-```
+## License
 
-这时候即使是合并变量:
-```
-if err != nil {
-    err = errors.WithMessage(err, "wrong")
-    log.Error(err)
-    return err
-}
-```
-也依然觉得这很别扭啊。
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-这个包封装 "github.com/pkg/errors" 和 "go.uber.org/zap" 日志的逻辑，当出错且需要打印日志时，就用它，而当不需要打印日志时，就用别的 errors，在项目中交替使用。
+---
+
+## Support
+
+Welcome to contribute to this project by submitting pull requests or reporting issues.
+
+If you find this package helpful, give it a star on GitHub!
+
+**Thank you for your support!**
+
+**Happy Coding with `erero`!** 🎉
