@@ -5,4 +5,4 @@ import (
 	"github.com/yyle88/erero/erzap"
 )
 
-var op = eecho.NewEEcho(erzap.NewZapED(3))
+var op = eecho.NewErrorsEcho(erzap.NewZapED(3))

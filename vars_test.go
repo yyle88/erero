@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestEEcho(t *testing.T) {
+func TestExample(t *testing.T) {
 	require.Error(t, runExample())
 }
 

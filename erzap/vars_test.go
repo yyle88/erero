@@ -8,7 +8,7 @@ import (
 	"github.com/yyle88/erero/eecho"
 )
 
-func TestErrors_Imp(t *testing.T) {
+func TestErrors_Implement(t *testing.T) {
 	var _ eecho.Log = NewZapDD(2)
 	var _ eecho.Log = NewZapED(2)
 	var _ eecho.Log = NewZapEN(2)

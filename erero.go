@@ -39,3 +39,11 @@ func Ase(erx error, target any) bool {
 func Wro(erx error) error {
 	return op.Wro(erx)
 }
+
+func Wrap(err error, message string) error {
+	return op.Wrap(err, message)
+}
+
+func Wrapf(err error, format string, args ...interface{}) error {
+	return op.Wrapf(err, format, args...)
+}
