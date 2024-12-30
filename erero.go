@@ -1,7 +1,7 @@
 package erero
 
-func Ero(erx error) error {
-	return op.Ero(erx)
+func Ero(err error) error {
+	return op.Ero(err)
 }
 
 func New(message string) error {
@@ -20,24 +20,24 @@ func Errorf(format string, args ...interface{}) error {
 	return op.Errorf(format, args...)
 }
 
-func Is(erx, target error) bool {
-	return op.Is(erx, target)
+func Is(err, target error) bool {
+	return op.Is(err, target)
 }
 
-func Ise(erx, target error) bool {
-	return op.Ise(erx, target)
+func Ise(err, target error) bool {
+	return op.Ise(err, target)
 }
 
-func As(erx error, target any) bool {
-	return op.As(erx, target)
+func As(err error, target any) bool {
+	return op.As(err, target)
 }
 
-func Ase(erx error, target any) bool {
-	return op.Ase(erx, target)
+func Ase(err error, target any) bool {
+	return op.Ase(err, target)
 }
 
-func Wro(erx error) error {
-	return op.Wro(erx)
+func Wro(err error) error {
+	return op.Wro(err)
 }
 
 func Wrap(err error, message string) error {

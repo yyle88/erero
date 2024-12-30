@@ -58,9 +58,11 @@ func main() {
 }
 ```
 
-## 许可协议
+---
 
-此项目采用 MIT 许可证，详情请参阅 [LICENSE](LICENSE) 文件。
+## 许可
+
+`erero` 是一个开源项目，发布于 MIT 许可证下。有关更多信息，请参阅 [LICENSE](LICENSE) 文件。
 
 ---
 
@@ -73,3 +75,5 @@ func main() {
 **感谢你的支持！**
 
 **祝编程愉快！** 🎉
+
+Give me stars. Thank you!!!

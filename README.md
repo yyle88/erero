@@ -65,9 +65,11 @@ func main() {
 }
 ```
 
+---
+
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+`erero` is open-source and released under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
 ---
 
@@ -80,3 +82,11 @@ If you find this package helpful, give it a star on GitHub!
 **Thank you for your support!**
 
 **Happy Coding with `erero`!** 🎉
+
+Give me stars. Thank you!!!
+
+---
+
+## Starring
+
+[![starring](https://starchart.cc/yyle88/erero.svg?variant=adaptive)](https://starchart.cc/yyle88/erero)

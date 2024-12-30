@@ -23,17 +23,17 @@ func TestErrors_Ero(t *testing.T) {
 }
 
 func TestErrors_Ise(t *testing.T) {
-	erx := errors.New("abc")
+	err := errors.New("abc")
 
-	require.True(t, ED.Ise(erx, erx))
-	require.True(t, WD.Ise(erx, erx))
-	require.True(t, DD.Ise(erx, erx))
+	require.True(t, ED.Ise(err, err))
+	require.True(t, WD.Ise(err, err))
+	require.True(t, DD.Ise(err, err))
 	t.Log("--")
-	require.True(t, EN.Ise(erx, erx)) // NOT PRINT LOG
+	require.True(t, EN.Ise(err, err)) // NOT PRINT LOG
 	t.Log("--")
 
-	require.False(t, ED.Ise(erx, errors.New("abc")))
-	require.False(t, WD.Ise(erx, errors.New("abc")))
-	require.False(t, DD.Ise(erx, errors.New("abc")))
-	require.False(t, EN.Ise(erx, errors.New("abc")))
+	require.False(t, ED.Ise(err, errors.New("abc")))
+	require.False(t, WD.Ise(err, errors.New("abc")))
+	require.False(t, DD.Ise(err, errors.New("abc")))
+	require.False(t, EN.Ise(err, errors.New("abc")))
 }
