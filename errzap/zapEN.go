@@ -1,4 +1,4 @@
-package erzap
+package errzap
 
 import (
 	"github.com/yyle88/zaplog"
@@ -14,7 +14,7 @@ func NewZapEN(skip int) *ZapEN {
 }
 
 func (z *ZapEN) ErrorLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Pn(z.skip).Error(msg, fields...)
+	zaplog.LOGS.Skip(z.skip).Error(msg, fields...)
 }
 
 func (z *ZapEN) DebugLog(msg string, fields ...zap.Field) {

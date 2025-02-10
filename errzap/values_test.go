@@ -1,18 +1,18 @@
-package erzap
+package errzap
 
 import (
 	"testing"
 
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
-	"github.com/yyle88/erero/eecho"
+	"github.com/yyle88/erero/errlog"
 )
 
 func TestErrors_Implement(t *testing.T) {
-	var _ eecho.Log = NewZapDD(2)
-	var _ eecho.Log = NewZapED(2)
-	var _ eecho.Log = NewZapEN(2)
-	var _ eecho.Log = NewZapWD(2)
+	var _ errlog.Log = NewZapDD(2)
+	var _ errlog.Log = NewZapED(2)
+	var _ errlog.Log = NewZapEN(2)
+	var _ errlog.Log = NewZapWD(2)
 }
 
 func TestErrors_Ero(t *testing.T) {

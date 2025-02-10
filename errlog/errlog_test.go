@@ -1,4 +1,4 @@
-package eecho
+package errlog
 
 import (
 	"testing"
@@ -18,17 +18,17 @@ func newEchoExample(prefix string) *echoExample {
 }
 
 func (e *echoExample) ErrorLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Pn(2).Error(e.prefix+msg, fields...)
+	zaplog.LOGS.Skip(2).Error(e.prefix+msg, fields...)
 }
 
 func (e *echoExample) DebugLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Pn(2).Debug(e.prefix+msg, fields...)
+	zaplog.LOGS.Skip(2).Debug(e.prefix+msg, fields...)
 }
 
-var caseErrorsEcho *ErrorsEcho
+var caseErrorsEcho *Errlog
 
 func TestMain(m *testing.M) {
-	caseErrorsEcho = NewErrorsEcho(newEchoExample("echo-message:"))
+	caseErrorsEcho = NewErrlog(newEchoExample("echo-message:"))
 	m.Run()
 }
 

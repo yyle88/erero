@@ -1,4 +1,4 @@
-package erzap
+package errzap
 
 import (
 	"github.com/yyle88/zaplog"
@@ -14,9 +14,9 @@ func NewZapWD(skip int) *ZapWD {
 }
 
 func (z *ZapWD) ErrorLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Pn(z.skip).Warn(msg, fields...) //这里出错时打 WARING 级日志
+	zaplog.LOGS.Skip(z.skip).Warn(msg, fields...) //这里出错时打 WARING 级日志
 }
 
 func (z *ZapWD) DebugLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Pn(z.skip).Debug(msg, fields...)
+	zaplog.LOGS.Skip(z.skip).Debug(msg, fields...)
 }
