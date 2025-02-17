@@ -1,49 +1,49 @@
 package erero
 
 func Ero(err error) error {
-	return op.Ero(err)
+	return ero.Ero(err)
 }
 
 func New(message string) error {
-	return op.New(message)
+	return ero.New(message)
 }
 
 func WithMessage(err error, message string) error {
-	return op.WithMessage(err, message)
+	return ero.WithMessage(err, message)
 }
 
 func WithMessagef(err error, format string, args ...interface{}) error {
-	return op.WithMessagef(err, format, args...)
+	return ero.WithMessagef(err, format, args...)
 }
 
 func Errorf(format string, args ...interface{}) error {
-	return op.Errorf(format, args...)
+	return ero.Errorf(format, args...)
 }
 
 func Is(err, target error) bool {
-	return op.Is(err, target)
+	return ero.Is(err, target)
 }
 
 func Ise(err, target error) bool {
-	return op.Ise(err, target)
+	return ero.Ise(err, target)
 }
 
 func As(err error, target any) bool {
-	return op.As(err, target)
+	return ero.As(err, target)
 }
 
 func Ase(err error, target any) bool {
-	return op.Ase(err, target)
+	return ero.Ase(err, target)
 }
 
 func Wro(err error) error {
-	return op.Wro(err)
+	return ero.Wro(err)
 }
 
 func Wrap(err error, message string) error {
-	return op.Wrap(err, message)
+	return ero.Wrap(err, message)
 }
 
 func Wrapf(err error, format string, args ...interface{}) error {
-	return op.Wrapf(err, format, args...)
+	return ero.Wrapf(err, format, args...)
 }

@@ -11,5 +11,5 @@ func TestExample(t *testing.T) {
 }
 
 func runExample() error {
-	return op.New("abc")
+	return ero.New("abc")
 }
