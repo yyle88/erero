@@ -3,96 +3,96 @@ package errorb
 import "github.com/pkg/errors"
 
 type ErrorOrNotExist struct {
-	ErrCause error
+	Cause    error
 	NotExist bool
 }
 
-func NewErrorOrNotExist(errCause error) *ErrorOrNotExist {
+func NewErrorOrNotExist(cause error) *ErrorOrNotExist {
 	return &ErrorOrNotExist{
-		ErrCause: errCause,
+		Cause:    cause,
 		NotExist: false,
 	}
 }
 
 func NewErrorIsNotExist() *ErrorOrNotExist {
 	return &ErrorOrNotExist{
-		ErrCause: errors.New("not-exist"),
+		Cause:    errors.New("NOT-EXIST"),
 		NotExist: true,
 	}
 }
 
 type ErrorOrSuccess struct {
-	ErrCause error
-	Success  bool
+	Cause   error
+	Success bool
 }
 
-func NewErrorOrSuccess(errCause error) *ErrorOrSuccess {
+func NewErrorOrSuccess(cause error) *ErrorOrSuccess {
 	return &ErrorOrSuccess{
-		ErrCause: errCause,
-		Success:  false,
+		Cause:   cause,
+		Success: false,
 	}
 }
 
 func NewErrorIsSuccess() *ErrorOrSuccess {
 	return &ErrorOrSuccess{
-		ErrCause: errors.New("success"),
-		Success:  true,
+		Cause:   errors.New("SUCCESS"),
+		Success: true,
 	}
 }
 
 type ErrorOrIgnore struct {
-	ErrCause error
-	Ignore   bool
+	Cause  error
+	Ignore bool
 }
 
-func NewErrorOrIgnore(errCause error) *ErrorOrIgnore {
+func NewErrorOrIgnore(cause error) *ErrorOrIgnore {
 	return &ErrorOrIgnore{
-		ErrCause: errCause,
-		Ignore:   false,
+		Cause:  cause,
+		Ignore: false,
 	}
 }
 
 func NewErrorIsIgnore() *ErrorOrIgnore {
 	return &ErrorOrIgnore{
-		ErrCause: errors.New("ignore"),
-		Ignore:   true,
+		Cause:  errors.New("IGNORE"),
+		Ignore: true,
 	}
 }
 
 type ErrorOrRetryable struct {
-	ErrCause  error
+	Cause     error
 	Retryable bool
 }
 
-func NewErrorOrRetryable(errCause error) *ErrorOrRetryable {
+func NewErrorOrRetryable(cause error) *ErrorOrRetryable {
 	return &ErrorOrRetryable{
-		ErrCause:  errCause,
+		Cause:     cause,
 		Retryable: false,
 	}
 }
 
 func NewErrorIsRetryable() *ErrorOrRetryable {
 	return &ErrorOrRetryable{
-		ErrCause:  errors.New("retryable"),
+		Cause:     errors.New("RETRYABLE"),
 		Retryable: true,
 	}
 }
 
 type ErrorOrRecoverable struct {
-	ErrCause    error
+	Cause       error
 	Recoverable bool
 }
 
-func NewErrorOrRecoverable(errCause error) *ErrorOrRecoverable {
+func NewErrorOrRecoverable(cause error) *ErrorOrRecoverable {
 	return &ErrorOrRecoverable{
-		ErrCause:    errCause,
+		Cause:       cause,
 		Recoverable: false,
 	}
 }
 
 func NewErrorIsRecoverable() *ErrorOrRecoverable {
 	return &ErrorOrRecoverable{
-		ErrCause:    errors.New("recoverable"),
+		Cause:       errors.New("RECOVERABLE"),
 		Recoverable: true,
 	}
 }
