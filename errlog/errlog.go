@@ -5,11 +5,6 @@ import (
 	"go.uber.org/zap"
 )
 
-type Log interface {
-	ErrorLog(msg string, fields ...zap.Field)
-	DebugLog(msg string, fields ...zap.Field)
-}
-
 type Errlog struct {
 	log Log
 }
@@ -19,7 +14,7 @@ func NewErrlog(log Log) *Errlog {
 }
 
 // Ero logs the provided error and returns it.
-// Ero 记录提供的错误并返回该错误。
+// Ero 当有错误时返回错误并记录日志。
 func (x *Errlog) Ero(err error) error {
 	if err != nil {
 		x.log.ErrorLog("ERROR", zap.Error(err))
@@ -27,8 +22,8 @@ func (x *Errlog) Ero(err error) error {
 	return err
 }
 
-// New creates a new error with the given message, logs it, and returns the error.
-// New 使用给定的消息创建一个新的错误，记录该错误并返回。
+// New creates a new error with the given message and logs it.
+// New 使用给定的消息创建新错误并打印日志。
 func (x *Errlog) New(message string) error {
 	err := errors.New(message)
 	if err != nil {
@@ -37,8 +32,8 @@ func (x *Errlog) New(message string) error {
 	return err
 }
 
-// WithMessage adds a custom message to the existing error, logs it, and returns the new error.
-// WithMessage 给现有的错误添加自定义消息，记录该错误并返回。
+// WithMessage annotates the provided error with a custom message and logs it.
+// WithMessage 给提供的错误添加自定义消息并打印日志。
 func (x *Errlog) WithMessage(err error, message string) error {
 	err = errors.WithMessage(err, message)
 	if err != nil {
@@ -47,8 +42,8 @@ func (x *Errlog) WithMessage(err error, message string) error {
 	return err
 }
 
-// WithMessagef adds a formatted message to the existing error, logs it, and returns the new error.
-// WithMessagef 给现有的错误添加格式化消息，记录该错误并返回。
+// WithMessagef annotates the provided error with a formatted message and logs it.
+// WithMessagef 给提供的错误添加格式化消息并打印日志。
 func (x *Errlog) WithMessagef(err error, format string, args ...interface{}) error {
 	err = errors.WithMessagef(err, format, args...)
 	if err != nil {
@@ -57,8 +52,8 @@ func (x *Errlog) WithMessagef(err error, format string, args ...interface{}) err
 	return err
 }
 
-// Errorf creates a new formatted error, logs it, and returns the error.
-// Errorf 创建一个新的格式化错误，记录该错误并返回。
+// Errorf creates a new formatted error and logs it.
+// Errorf 创建新的格式化错误并打印日志。
 func (x *Errlog) Errorf(format string, args ...interface{}) error {
 	err := errors.Errorf(format, args...)
 	if err != nil {
@@ -67,14 +62,14 @@ func (x *Errlog) Errorf(format string, args ...interface{}) error {
 	return err
 }
 
-// Is checks if the provided error is equal to the target error.
-// Is 检查提供的错误是否与目标错误相等。
+// Is checks if the provided error matches the target error.
+// Is 检查提供的错误是否与目标错误匹配。
 func (x *Errlog) Is(err, target error) bool {
 	return errors.Is(err, target)
 }
 
-// Ise checks if the provided error is equal to the target error, logging DEBUG for matching errors and ERROR for others.
-// Ise 检查提供的错误是否与目标错误相等，对于匹配的错误记录 DEBUG 日志，其他错误记录 ERROR 日志。
+// Ise checks if the provided error matches the target error, logging DEBUG for matches and ERROR otherwise.
+// Ise 检查提供的错误是否与目标错误匹配，匹配时打印 DEBUG 日志，否则打印 ERROR 日志。
 func (x *Errlog) Ise(err, target error) bool {
 	if errors.Is(err, target) {
 		if err != nil {
@@ -89,13 +84,13 @@ func (x *Errlog) Ise(err, target error) bool {
 }
 
 // As checks if the provided error can be cast to the target type.
-// As 检查提供的错误是否可以转换为目标类型。
+// As 检查提供的错误是否可转换为目标类型。
 func (x *Errlog) As(err error, target any) bool {
 	return errors.As(err, target)
 }
 
-// Ase checks if the provided error can be cast to the target type, logging DEBUG for successful casts and ERROR for others.
-// Ase 检查提供的错误是否可以转换为目标类型，成功转换时记录 DEBUG 日志，其他情况记录 ERROR 日志。
+// Ase checks if the provided error can be cast to the target type, logging DEBUG for successful casts and ERROR otherwise.
+// Ase 检查提供的错误是否可转换为目标类型，成功转换时打印 DEBUG 日志，否则打印 ERROR 日志。
 func (x *Errlog) Ase(err error, target any) bool {
 	if errors.As(err, target) {
 		if err != nil {
@@ -109,8 +104,8 @@ func (x *Errlog) Ase(err error, target any) bool {
 	return false
 }
 
-// Wro adds a default "wrong" message to the provided error, logs it, and returns the new error.
-// Wro 为提供的错误添加默认的 "wrong" 消息，记录该错误并返回。
+// Wro annotates the provided error with a default "wrong" message and logs it.
+// Wro 给提供的错误添加默认的 "wrong" 消息并打印日志。
 func (x *Errlog) Wro(err error) error {
 	err = errors.WithMessage(err, "wrong")
 	if err != nil {
@@ -119,6 +114,8 @@ func (x *Errlog) Wro(err error) error {
 	return err
 }
 
+// Wrap wraps the provided error with a message and logs it.
+// Wrap 给提供的错误添加消息并包装后打印日志。
 func (x *Errlog) Wrap(err error, message string) error {
 	err = errors.Wrap(err, message)
 	if err != nil {
@@ -127,6 +124,8 @@ func (x *Errlog) Wrap(err error, message string) error {
 	return err
 }
 
+// Wrapf wraps the provided error with a formatted message and logs it.
+// Wrapf 给提供的错误添加格式化消息并包装后打印日志。
 func (x *Errlog) Wrapf(err error, format string, args ...interface{}) error {
 	err = errors.Wrapf(err, format, args...)
 	if err != nil {

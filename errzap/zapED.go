@@ -1,22 +1,21 @@
 package errzap
 
 import (
+	"github.com/yyle88/erero/errlog"
 	"github.com/yyle88/zaplog"
 	"go.uber.org/zap"
 )
 
-type ZapED struct {
-	skip int
+type zapED struct{}
+
+func NewLogED() errlog.Log {
+	return &zapED{}
 }
 
-func NewZapED(skip int) *ZapED {
-	return &ZapED{skip: skip}
+func (z *zapED) ErrorLog(msg string, fields ...zap.Field) {
+	zaplog.LOGS.Skip(2).Error(msg, fields...)
 }
 
-func (z *ZapED) ErrorLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Skip(z.skip).Error(msg, fields...)
-}
-
-func (z *ZapED) DebugLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Skip(z.skip).Debug(msg, fields...)
+func (z *zapED) DebugLog(msg string, fields ...zap.Field) {
+	zaplog.LOGS.Skip(2).Debug(msg, fields...)
 }

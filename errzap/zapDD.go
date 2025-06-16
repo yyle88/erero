@@ -1,22 +1,21 @@
 package errzap
 
 import (
+	"github.com/yyle88/erero/errlog"
 	"github.com/yyle88/zaplog"
 	"go.uber.org/zap"
 )
 
-type ZapDD struct {
-	skip int
+type zapDD struct{}
+
+func NewLogDD() errlog.Log {
+	return &zapDD{}
 }
 
-func NewZapDD(skip int) *ZapDD {
-	return &ZapDD{skip: skip}
+func (z *zapDD) ErrorLog(msg string, fields ...zap.Field) {
+	zaplog.LOGS.Skip(2).Debug(msg, fields...) //这里当出错时还是 DEBUG 级别的
 }
 
-func (z *ZapDD) ErrorLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Skip(z.skip).Debug(msg, fields...) //这里当出错时还是 DEBUG 级别的
-}
-
-func (z *ZapDD) DebugLog(msg string, fields ...zap.Field) {
-	zaplog.LOGS.Skip(z.skip).Debug(msg, fields...)
+func (z *zapDD) DebugLog(msg string, fields ...zap.Field) {
+	zaplog.LOGS.Skip(2).Debug(msg, fields...)
 }
