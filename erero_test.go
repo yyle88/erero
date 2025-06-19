@@ -50,3 +50,20 @@ func TestWrapf(t *testing.T) {
 	err := errors.New("abc")
 	require.Error(t, erero.Wrapf(err, "wrong reason=%s", "reason"))
 }
+
+func TestJoin(t *testing.T) {
+	require.Error(t, erero.Join(
+		erero.New("abc"),
+		erero.New("xyz"),
+		erero.New("123"),
+	))
+}
+
+func TestJoins(t *testing.T) {
+	var errs = []error{
+		erero.New("abc"),
+		erero.New("xyz"),
+		erero.New("123"),
+	}
+	require.Error(t, erero.Joins(errs))
+}

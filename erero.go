@@ -47,3 +47,11 @@ func Wrap(err error, message string) error {
 func Wrapf(err error, format string, args ...interface{}) error {
 	return ero.Wrapf(err, format, args...)
 }
+
+func Join(errs ...error) error {
+	return ero.Join(errs...)
+}
+
+func Joins(errs []error) error {
+	return ero.Joins(errs)
+}
